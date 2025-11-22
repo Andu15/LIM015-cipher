@@ -24,17 +24,15 @@ const cipher = {
   },
   getAsciiCode: (text, offset) => {
     let result = "";
-    console.log("offset", offset)
-    console.log("ttypeofoffset", typeof offset)
+
     for (let char of text) {
       const asciiCode = Number(char.charCodeAt(0));
-      console.log("asciiCode", asciiCode)
-      console.log("typeof asciiCode", typeof asciiCode)
-      const newCode = asciiCode + Number(offset)
-      console.log("newCode", newCode)
+      const newCode = asciiCode + Number(offset);
+      const formatCode = newCode.toString();
+      result += formatCode;
     }
     
-    return text.charCodeAt(0).toString();
+    return result;
   }
 };
 
