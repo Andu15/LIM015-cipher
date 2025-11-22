@@ -1,99 +1,125 @@
 /* ======== CONFIG GENERAL ======== */
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background: #f5f7fa;
-  font-family: "Inter", Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #f5f7fa;
+    /* Usamos Inter como font-family principal */
+    font-family: 'Inter', sans-serif; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 /* ======== CONTENEDOR PRINCIPAL ======== */
 #root {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px; /* Añadir padding para móvil */
 }
 
 /* ======== TARJETA ========= */
 .card {
-  background: #ffffff;
-  padding: 32px 40px;
-  border-radius: 16px;
-  width: 100%;
-  max-width: 450px;
-
-  /* sombra elegante */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    background: #ffffff;
+    padding: 32px 40px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 450px;
+    /* sombra elegante */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
 
 h1 {
-  text-align: center;
-  margin-bottom: 28px;
-  color: #2d2d2d;
-  font-size: 28px;
+    text-align: center;
+    margin-bottom: 28px;
+    color: #2d2d2d;
+    font-size: 28px;
+    font-weight: 700;
 }
 
 /* ======== LABELS ======== */
 label {
-  display: block;
-  margin: 12px 0 6px;
-  font-weight: 600;
-  font-size: 15px;
-  color: #333;
+    display: block;
+    margin: 12px 0 6px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #333;
 }
 
-/* ======== INPUTS ======== */
+/* ======== INPUTS y SELECT ======== */
 input[type="text"],
-input[type="number"] {
-  width: 100%;
-  padding: 12px 14px;
-  border-radius: 10px;
-  border: 1px solid #d1d1d1;
-  font-size: 16px;
-  outline: none;
-  transition: 0.25s;
+input[type="number"],
+#operationSelect {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #d1d1d1;
+    font-size: 16px;
+    outline: none;
+    transition: 0.25s;
+    /* Asegurar que el select también tenga el mismo aspecto */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: white;
+    cursor: pointer;
 }
 
-input:focus {
-  border-color: #4a7df5;
-  box-shadow: 0 0 7px rgba(74, 125, 245, 0.35);
+input:focus,
+#operationSelect:focus {
+    border-color: #4a7df5;
+    box-shadow: 0 0 7px rgba(74, 125, 245, 0.35);
 }
 
-/* Resultado */
+/* Resultado (readonly) */
 input[readonly] {
-  background: #f0f0f3;
+    background: #f0f0f3;
+    color: #555;
+    font-weight: 500;
+}
+
+/* Estilos específicos para el SELECT (añadido para replicar la imagen) */
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper::after {
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #888;
+    font-size: 12px;
 }
 
 /* ======== BOTÓN ======== */
 button {
-  width: 100%;
-  margin-top: 22px;
-  padding: 14px;
-  border-radius: 12px;
-  border: none;
-
-  background: #4a7df5;
-  color: white;
-  font-size: 17px;
-  font-weight: 600;
-  cursor: pointer;
-
-  transition: 0.25s;
+    width: 100%;
+    margin-top: 22px;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    background: #4a7df5;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s;
 }
 
 button:hover {
-  background: #345ec5;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background: #345ec5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 button:active {
-  transform: translateY(0);
+    transform: translateY(0);
 }
