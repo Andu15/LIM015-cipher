@@ -1,37 +1,58 @@
-import { allowedAlphabet } from './utils.js'
-
-const ALPHABET_LENGTH = allowedAlphabet.length;
+import { validateInput, validateTypes } from './utils.js';
 
 const cipher = {
-  encode: (text) => {
+  encode: (offset, text) => {
+    // Validación
+    validateTypes(offset, text);
+    validateInput(text);
+
     let result = "";
 
     for (let char of text) {
-      const upperChar = char.toUpperCase();
+      const ascii = char.charCodeAt(0);
 
-      // 1. Encontrar la posición (índice) de la letra
-      const charIndex = allowedAlphabet.indexOf(upperChar);
-
-      // 2. Aplicar la circularidad (aritmética modular)
-      const newIndex = (charIndex + shift) % ALPHABET_LENGTH;
-
-      // 3. Obtener la nueva letra
-      const encodedChar = allowedAlphabet[newIndex];
-      result += encodedChar;
+      // MAYÚSCULAS A-Z
+      if (ascii >= 65 && ascii <= 90) {
+        const newAscii = ((ascii - 65 + offset) % 26) + 65;
+        result += String.fromCharCode(newAscii);
+      // MINÚSCULAS a-z
+      } else if (ascii >= 97 && ascii <= 122) {
+        const newAscii = ((ascii - 97 + offset) % 26) + 97;
+        result += String.fromCharCode(newAscii);
+      // Otros caracteres NO se modifican
+      } else {
+        result += char;
+      }
     }
 
     return result;
   },
-  getAsciiCode: (text, offset) => {
+  decode: (offset, text) => {
+    // Validación
+    validateTypes(offset, text);
+    validateInput(text);
+
     let result = "";
 
     for (let char of text) {
-      const asciiCode = Number(char.charCodeAt(0));
-      const newCode = asciiCode + Number(offset);
-      const formatCode = newCode.toString();
-      result += formatCode;
+      const ascii = char.charCodeAt(0);
+
+      // MAYÚSCULAS A-Z
+      if (ascii >= 65 && ascii <= 90) {
+        const newAscii = ((ascii - 65 - offset) % 26 + 26) % 26 + 65;
+        result += String.fromCharCode(newAscii);
+
+      // MINÚSCULAS a-z
+      } else if (ascii >= 97 && ascii <= 122) {
+        const newAscii = ((ascii - 97 - offset) % 26 + 26) % 26 + 97;
+        result += String.fromCharCode(newAscii);
+
+      // Otros caracteres NO se modifican
+      } else {
+        result += char;
+      }
     }
-    
+
     return result;
   }
 };
