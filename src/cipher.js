@@ -1,10 +1,11 @@
-import { validateInput, validateTypes } from './utils.js';
+import { 
+  validateTypes 
+} from './utils.js';
 
 const cipher = {
   encode: (offset, text) => {
     // Validación
     validateTypes(offset, text);
-    validateInput(text);
 
     let result = "";
 
@@ -30,7 +31,6 @@ const cipher = {
   decode: (offset, text) => {
     // Validación
     validateTypes(offset, text);
-    validateInput(text);
 
     let result = "";
 
